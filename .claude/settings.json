@@ -1,0 +1,16 @@
+{
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "mintlify",
+    "android-mcp",
+    "cowork-sync",
+    "documentation"
+  ],
+  "permissions": {
+    "defaultMode": "default"
+  },
+  "env": {
+    "ANDROID_MCP_ENABLED": "true",
+    "COWORK_SYNC_ENABLED": "true"
+  }
+}
