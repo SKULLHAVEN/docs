@@ -1,0 +1,44 @@
+{
+  "mcpServers": {
+    "android-mcp": {
+      "command": "node",
+      "args": [
+        "android-mcp-server.js"
+      ],
+      "env": {
+        "ANDROID_HOME": "${ANDROID_HOME}",
+        "ANDROID_SDK_ROOT": "${ANDROID_SDK_ROOT}",
+        "DEBUG": "android-mcp:*"
+      },
+      "disabled": false
+    },
+    "mintlify": {
+      "command": "node",
+      "args": [
+        "mintlify-mcp-server.js"
+      ],
+      "disabled": false
+    },
+    "cowork-sync": {
+      "command": "node",
+      "args": [
+        "cowork-sync-server.js"
+      ],
+      "env": {
+        "COWORK_WORKSPACE_ID": "${COWORK_WORKSPACE_ID}",
+        "COWORK_SYNC_PATH": "."
+      },
+      "disabled": false
+    },
+    "documentation": {
+      "command": "node",
+      "args": [
+        "docs-mcp-server.js"
+      ],
+      "env": {
+        "DOCS_ROOT": "."
+      },
+      "disabled": false
+    }
+  }
+}

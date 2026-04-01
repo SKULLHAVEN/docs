@@ -12,11 +12,14 @@
   "env": {
     "ANDROID_MCP_ENABLED": "true",
     "COWORK_SYNC_ENABLED": "true",
-    "DEBUG": "claude:*,workspace:*,mcp:*",
+    "DEBUG": "claude:*,workspace:*,mcp:*,android-mcp:*",
     "WORKSPACE_DEBUG": "true",
     "SYNC_VERBOSE": "true",
     "MCP_DEBUG": "true",
-    "LOG_LEVEL": "debug"
+    "ANDROID_MCP_DEBUG": "true",
+    "LOG_LEVEL": "debug",
+    "ANDROID_HOME": "/home/user/Android/Sdk",
+    "ANDROID_SDK_ROOT": "/home/user/Android/Sdk"
   },
   "hooks": {
     "SessionStart": [
@@ -25,7 +28,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo '{\"systemMessage\": \"Debug mode enabled: Workspace sync, MCP server, and file sync logging active. Check logs for detailed diagnostics.\"}'"
+            "command": "{ echo '[ANDROID_MCP_INIT]' $(date); [ -f .mcp.json ] && echo 'MCP config: FOUND' || echo 'MCP config: MISSING'; [ -n \"$ANDROID_HOME\" ] && echo \"Android SDK: $ANDROID_HOME\" || echo 'Android SDK: NOT SET'; } >> ~/.claude/android-mcp-debug.log 2>&1; echo '{\"systemMessage\": \"Debug enabled: Android MCP, workspace sync, and MCP server logging active. Check ~/.claude/android-mcp-debug.log and ~/.claude/workspace-debug.log\"}'"
           }
         ]
       }
