@@ -11,6 +11,36 @@
   },
   "env": {
     "ANDROID_MCP_ENABLED": "true",
-    "COWORK_SYNC_ENABLED": "true"
+    "COWORK_SYNC_ENABLED": "true",
+    "DEBUG": "claude:*,workspace:*,mcp:*",
+    "WORKSPACE_DEBUG": "true",
+    "SYNC_VERBOSE": "true",
+    "MCP_DEBUG": "true",
+    "LOG_LEVEL": "debug"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"systemMessage\": \"Debug mode enabled: Workspace sync, MCP server, and file sync logging active. Check logs for detailed diagnostics.\"}'"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // .tool_response.filePath' | { read -r f; echo \"[WORKSPACE_SYNC] File modified: $f ($(date))\" >> ~/.claude/workspace-debug.log; } 2>/dev/null || true",
+            "statusMessage": "Logging file change for sync verification"
+          }
+        ]
+      }
+    ]
   }
 }
