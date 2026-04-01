@@ -9,6 +9,9 @@
   "permissions": {
     "defaultMode": "default"
   },
+  "enabledPlugins": {
+    "formatter@anthropic-tools": true
+  },
   "env": {
     "ANDROID_MCP_ENABLED": "true",
     "COWORK_SYNC_ENABLED": "true",
